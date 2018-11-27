@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>dom事件</title>
+		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+		<style type="text/css">
+			body{
+				position: relative;
+			}
+			#mask{
+				position: absolute;
+				display: none;
+				top: 200px;
+				left: 200px;
+				width: 400px;
+				height: 400px;
+				border: 10px solid lightgreen;
+				line-height: 400px;
+				text-align: center;
+				font-size: 50px;
+			}
+			button{
+				margin: 50px auto;
+				width: 100px;
+				height: 100px;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<button type="button" id="button">点击</button>
+		<div id="mask">浮层</div>
+		<script type="text/javascript">
+			$('#button').on('click',function(e){
+				e.stopPropagation()
+				if($('#mask').is(':hidden')){
+					$('#mask').show()
+					$(document).one('click',function(){
+						$('#mask').hide()
+					})
+				}else{$('#mask').hide()}
+			})
+			$('#mask').on('click',function(e){e.stopPropagation()})
+			
+			
+// 			var Btn=document.getElementById("button")
+// 			var Mask=document.getElementById("mask")
+// 			
+// 			Btn.addEventListener('click',function(){
+// 				if(Mask.style.display=='block'){
+// 					Mask.style.display='none'
+// 				}else{
+// 					Mask.style.display='block'
+// 				}
+// 			})
+// 			document.addEventListener('click',function(){
+// 				Mask.style.display='none'
+// 			})
+// 			Mask.addEventListener('click',function(e){
+// 				e.stopPropagation()
+// 			})
+// 			Btn.addEventListener('click',function(e){
+// 				e.stopPropagation()
+// 			})
+		</script>
+	</body>
+</html>
